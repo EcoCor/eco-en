@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<teiCorpus xmlns="http://www.tei-c.org/ns/1.0">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>English EcoCor</title>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>EcoCor</publisher>
+        <idno type="URI" xml:base="https://ecocor.org/">en</idno>
+        <idno type="repo">https://github.com/dracor-org/eco_en</idno>
+        <availability>
+          <licence target="https://creativecommons.org/share-your-work/public-domain/cc0/">
+            CC0
+          </licence>
+        </availability>
+      </publicationStmt>
+    </fileDesc>
+    <encodingDesc>
+      <projectDesc>
+        <p>
+          See the <ref target="https://github.com/dracor-org/eco_en">README on GitHub</ref>.
+        </p>
+      </projectDesc>
+    </encodingDesc>
+  </teiHeader>
+</teiCorpus>
