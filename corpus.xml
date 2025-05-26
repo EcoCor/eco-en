@@ -8,7 +8,7 @@
       <publicationStmt>
         <publisher>EcoCor</publisher>
         <idno type="URI" xml:base="https://ecocor.org/">en</idno>
-        <idno type="repo">https://github.com/dracor-org/eco_en</idno>
+        <idno type="repo">https://github.com/EcoCor/eco-en</idno>
         <availability>
           <licence target="https://creativecommons.org/share-your-work/public-domain/cc0/">
             CC0
@@ -19,7 +19,7 @@
     <encodingDesc>
       <projectDesc>
         <p>
-          See the <ref target="https://github.com/dracor-org/eco_en">README on GitHub</ref>.
+          See the <ref target="https://github.com/EcoCor/eco-en">README on GitHub</ref>.
         </p>
       </projectDesc>
     </encodingDesc>
