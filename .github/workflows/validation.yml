@@ -3,16 +3,47 @@ name: Validate TEI documents
 on:
   workflow_dispatch:
   pull_request:
-  push:
+    branches: [main]
     paths:
       - "tei/*.xml"
+  push:
+    branches: [main]
+    paths:
+      - "tei/*.xml"
+
+permissions:
+  contents: read
 
 jobs:
   validate_tei:
     runs-on: ubuntu-latest
-    name: Validate against TEI_all 4.4.0
+    name: Validate TEI files
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Validate
-        uses: dracor-org/tei-validate-action@v1.0.0
+      # We need to checkout with fetch-depth 0 or 2 for push events;
+      # see https://github.com/tj-actions/changed-files?tab=readme-ov-file#usage-
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        if: github.event_name == 'push'
+        with:
+          fetch-depth: 0
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        if: github.event_name != 'push'
+
+      - name: Get changed files
+        id: changed-tei-files
+        uses: tj-actions/changed-files@7dee1b0c1557f278e5c7dc244927139d78c0e22a #v47.0.4
+        if: github.event_name == 'push' || github.event_name == 'pull_request'
+        with:
+          files: |
+            tei/*.xml
+
+      - name: Get changed files
+        id: all-tei-files
+        if: github.event_name == 'workflow_dispatch'
+        run: echo 'files=tei/*.xml' >> $GITHUB_OUTPUT
+
+      - name: Validate against TEI-All schema
+        uses: dracor-org/dracor-validate-action@bf3d565b8af9d7cb5d3a0a2cb21ebac68f85eb33 # v2.3.0
+        with:
+          files: |
+            ${{ steps.changed-tei-files.outputs.all_changed_files }}
+            ${{ steps.all-tei-files.outputs.files }}
